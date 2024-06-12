@@ -19,6 +19,7 @@
 }
 
 .form__row {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -48,4 +49,12 @@
     resize: none;
     height: 80px;
   }
+}
+
+.form__error-message {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  font-size: 13px;
+  color: #EE4222;
 }

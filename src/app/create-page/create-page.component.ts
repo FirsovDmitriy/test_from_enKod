@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SvgIconSpriteComponent } from '../svg-icon-sprite/svg-icon-sprite.component';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { City } from '../../cities.data';
 import { StoreService } from '../store.service';
 
@@ -13,14 +13,18 @@ import { StoreService } from '../store.service';
   styleUrl: './create-page.component.scss'
 })
 export class CreatePageComponent implements OnInit {
-  name = new FormControl('')
-  description = new FormControl('')
-  imageUrl = new FormControl('')
+  name = new FormControl('', Validators.required)
+  description = new FormControl('', Validators.required)
+  imageUrl = new FormControl('', Validators.required)
 
   constructor(private router: Router, private store: StoreService ) {}
 
   goBack() {
     this.router.navigate([""])
+  }
+
+  isDisabled() {
+    return this.name.invalid || this.description.invalid || this.imageUrl.invalid
   }
 
   onSubmit(event: Event) {
