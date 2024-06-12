@@ -1,0 +1,36 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  display: flex;
+  gap: 28px;
+  padding-top: 20px;
+  border-top: 1px solid #D3D4DB;
+}
+
+.card__img-wrapper {
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.card__img {
+  object-fit: cover;
+  display: grid;
+}
+
+.card__content-wrapper {
+  display: grid;
+  grid-template-rows: repeat(2, min-content);
+  align-content: center;
+  gap: 12px;
+}
+
+.card__row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}

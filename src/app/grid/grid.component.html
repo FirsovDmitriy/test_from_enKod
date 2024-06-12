@@ -1,0 +1,18 @@
+<div class="grid">
+  @for (city of items(); track $index) {
+    <article class="card">
+      <img class="card__img" src="{{ city.image }}" alt="">
+      <div class="card__content-wrapper">
+        <span class="card__row">
+          <h2 class="card__title">
+            {{ city.name }}
+          </h2>
+          <app-favorite-button (click)="getId(city.id)" [isFavorite]="city.favorite" />
+        </span>
+        <p class="card__text">
+          {{ city.description }}
+        </p>
+      </div>
+    </article>
+  }
+</div>
