@@ -1,0 +1,44 @@
+<form
+  class="form"
+  action="#"
+  (submit)="handleSubmit($event)"
+  [formGroup]="form"
+>
+  <div class="form__main">
+    <label class="form__row">
+      <span class="form__label"> Название города * </span>
+      <input class="form__field" formControlName="name" type="text" />
+      @if (form.get('name')?.hasError('required') && (form.get('name')?.touched)) {
+      <div class="form__error-message">
+        <p>Поле обязательно к заполнению.</p>
+      </div>
+      }
+    </label>
+    <label class="form__row">
+      <span class="form__label"> Описание города * </span>
+      <textarea
+        class="form__field form__field_medium"
+        formControlName="description"
+      >
+      </textarea>
+      @if (form.get('description')?.hasError('required') &&
+      (form.get('description')?.touched || form.get('description')?.dirty)) {
+      <div class="form__error-message">
+        <p>Поле обязательно к заполнению.</p>
+      </div>
+      }
+    </label>
+    <label class="form__row">
+      <span class="form__label"> Ссылка на картинку * </span>
+      <input class="form__field" type="text" formControlName="imageUrl" />
+      @if (form.get('imageUrl')?.hasError('required') && (form.get('imageUrl')?.touched)) {
+        <div class="form__error-message">
+          <p>Поле обязательно к заполнению.</p>
+        </div>
+      }
+    </label>
+  </div>
+  <button class="button button_cyan" type="submit" [disabled]="isDisabled()">
+    Создать
+  </button>
+</form>

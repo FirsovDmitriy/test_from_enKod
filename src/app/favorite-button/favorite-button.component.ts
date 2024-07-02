@@ -1,5 +1,7 @@
-import { Component, Input, computed, input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SvgIconSpriteComponent } from '../svg-icon-sprite/svg-icon-sprite.component';
+import { CitiesService } from '../state/cities.service';
+import { City } from '../state/cities.store';
 
 @Component({
   selector: 'app-favorite-button',
@@ -9,5 +11,18 @@ import { SvgIconSpriteComponent } from '../svg-icon-sprite/svg-icon-sprite.compo
   styleUrl: './favorite-button.component.scss'
 })
 export class FavoriteButtonComponent {
-  @Input() isFavorite: boolean = false
+  @Input() item: City = {
+    id: 0,
+    image: '',
+    name: '',
+    description: '',
+    favorite: false
+  }
+
+  constructor(private citiesService:CitiesService) {}
+
+  favorite() {
+    const isFavorite = !this.item.favorite
+    this.citiesService.edit(this.item.id, isFavorite)
+  }
 }

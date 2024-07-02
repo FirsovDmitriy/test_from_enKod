@@ -1,36 +1,35 @@
 <div class="list">
-  @for (city of items(); track $index) {
-    <article class="list__item card">
-      <div class="card__img-wrapper">
-        <img
-          class="card__img"
-          src="{{ city.image }}"
-          width="100"
-          height="100"
-          alt=""
+  @for (city of items; track $index) {
+  <article class="list__item card">
+    <div class="card__img-wrapper">
+      <img
+        class="card__img"
+        src="{{ city.image }}"
+        width="100"
+        height="100"
+        alt=""
+      />
+    </div>
+    <div class="card__content-wrapper">
+      <span class="card__row">
+        <h2>
+          {{ city.name }}
+        </h2>
+        <app-favorite-button
+          [item]="city"
         />
-      </div>
-      <div class="card__content-wrapper">
-        <span class="card__row">
-          <h2>
-            {{ city.name }}
-          </h2>
+      </span>
+      <p>{{ city.description }}</p>
 
-          <app-favorite-button (click)="getId(city.id)" [isFavorite]="city.favorite" />
-
-          <!-- <button
-            class="card__button"
-            (click)="sendId(city.id)"
-          >
-            @if (city.favorite) {
-              <app-svg-icon-sprite [icon]="'star-fill'" />
-            } @else {
-              <app-svg-icon-sprite [icon]="'star'" />
-            }
-          </button> -->
-        </span>
-        <p>{{ city.description }}</p>
+      <div class="card__actions">
+        <a class="icon-button" [routerLink]="['/edit', city.id]">
+          <app-svg-icon-sprite icon="edit" />
+        </a>
+        <button class="card__delete icon-button" (click)="delete(city.id)">
+          <app-svg-icon-sprite icon="trash" />
+        </button>
       </div>
-    </article>
+    </div>
+  </article>
   }
 </div>

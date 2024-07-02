@@ -1,15 +1,35 @@
 import { Routes } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
-import { CreatePageComponent } from './create-page/create-page.component';
 
 export const routes: Routes = [
   {
-    path: "",
-    component: HomePageComponent
+    path: '',
+    component: HomePageComponent,
+    children: [
+      {
+        path: 'list',
+        loadComponent: () =>
+          import('./list/list.component').then((m) => m.ListComponent),
+      },
+      {
+        path: 'tile',
+        loadComponent: () =>
+          import('./grid/grid.component').then((mod) => mod.GridComponent),
+      },
+    ],
   },
   {
-    path: "create",
-    component: CreatePageComponent,
-    data: { title: 'Hello Angular 18' }
-  }
+    path: 'create',
+    loadComponent: () =>
+      import('./create-page/create-page.component').then(
+        (mod) => mod.CreatePageComponent
+      ),
+  },
+  {
+    path: 'edit/:id',
+    loadComponent: () =>
+      import('./edit-page/edit-page.component').then(
+        (mod) => mod.EditPageComponent
+      ),
+  },
 ];

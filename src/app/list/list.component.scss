@@ -23,8 +23,10 @@
 }
 
 .card__content-wrapper {
+  flex: auto;
   display: grid;
   grid-template-rows: repeat(2, min-content);
+  grid-template-columns: 1fr min-content;
   align-content: center;
   gap: 12px;
 }
@@ -33,4 +35,20 @@
   display: flex;
   align-items: center;
   gap: 14px;
+}
+
+.card__actions {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.card__delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
 }

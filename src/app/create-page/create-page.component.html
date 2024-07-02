@@ -4,53 +4,6 @@
       <app-svg-icon-sprite icon="arrow-back" />
       Назад
     </button>
-    <form class="form" action="#" (submit)="onSubmit($event)">
-      <div class="form__main">
-        <label class="form__row">
-          <span class="form__label">
-            Название города *
-          </span>
-          <input
-            class="form__field"
-            [formControl]="name"
-            type="text"
-          >
-          @if (name.hasError('required') && (name.touched || name.dirty)) {
-            <div class="form__error-message">
-              <p>Поле обязательно к заполнению.</p>
-            </div>
-          }
-        </label>
-        <label class="form__row">
-          <span class="form__label">
-            Описание города *
-          </span>
-          <textarea
-            class="form__field form__field_medium"
-            [formControl]="description"
-          >
-          </textarea>
-          @if (description.hasError('required') && (description.touched || description.dirty)) {
-            <div class="form__error-message">
-              <p>Поле обязательно к заполнению.</p>
-            </div>
-          }
-        </label>
-        <label class="form__row">
-          <span class="form__label">
-            Ссылка на картинку *
-          </span>
-          <input class="form__field" type="text" [formControl]="imageUrl" />
-          @if (imageUrl.hasError('required') && (imageUrl.touched || imageUrl.dirty)) {
-            <div class="form__error-message">
-              <p>Поле обязательно к заполнению.</p>
-            </div>
-          }
-        </label>
-      </div>
-      <button class="button button_cyan" type="submit" [disabled]="isDisabled()">
-        Создать
-      </button>
-    </form>
+    <app-form (onSubmit)="onSubmit($event)" [form]="form" />
   </div>
 </section>

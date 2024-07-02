@@ -2,29 +2,33 @@
   <div class="section__container container">
     <div class="section__row">
       <div class="section__button-group">
-        <button
-          class="section__button button"
-          [class.section__button_active]="activeList()"
-          (click)="displayList()"
+        <a
+          class="section__link section__button button"
+          routerLink="/list"
+          routerLinkActive="section__button_active"
         >
           Список
-        </button>
-        <button
-          [class.section__button_active]="activeGrid()"
-          class="section__button button"
-          (click)="displayGrid()"
+        </a>
+        <a
+          routerLinkActive="section__button_active"
+          routerLink="/tile"
+          class="section__button button section__link"
         >
           Плитка
-        </button>
+        </a>
       </div>
       <a class="section__link button button_cyan" routerLink="/create">Создать</a>
     </div>
-    @if (isVisible() === "list") {
+    <router-outlet></router-outlet>
+
+
+    <!-- @if (isVisible() === "list") {
       <app-list
         (idEvent)="addFavorite($event)"
       />
     } @else {
       <app-grid (idEvent)="addFavorite($event)" />
-    }
+    } -->
+
   </div>
 </section>

@@ -1,49 +1,54 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SvgIconSpriteComponent } from '../svg-icon-sprite/svg-icon-sprite.component';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { City } from '../../cities.data';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { StoreService } from '../store.service';
+import { CitiesService } from '../state/cities.service';
+import { City } from '../state/cities.store';
+import { FormComponent } from '../form/form.component';
 
 @Component({
   selector: 'app-create-page',
   standalone: true,
-  imports: [ReactiveFormsModule, SvgIconSpriteComponent],
+  imports: [ReactiveFormsModule, SvgIconSpriteComponent, FormComponent],
   templateUrl: './create-page.component.html',
-  styleUrl: './create-page.component.scss'
+  styleUrl: './create-page.component.scss',
 })
 export class CreatePageComponent implements OnInit {
-  name = new FormControl('', Validators.required)
-  description = new FormControl('', Validators.required)
-  imageUrl = new FormControl('', Validators.required)
+  form = this.fb.group({
+    name: ['', Validators.required],
+    description: ['', Validators.required],
+    imageUrl: ['', Validators.required],
+  });
 
-  constructor(private router: Router, private store: StoreService ) {}
+  constructor(
+    private router: Router,
+    private store: StoreService,
+    private citiesService: CitiesService,
+    private fb: FormBuilder
+  ) {}
 
   goBack() {
-    this.router.navigate([""])
-  }
-
-  isDisabled() {
-    return this.name.invalid || this.description.invalid || this.imageUrl.invalid
+    this.router.navigate(['/list']);
   }
 
   onSubmit(event: Event) {
-    event.preventDefault()
+    event.preventDefault();
 
     const item = {
       id: Date.now(),
-      name: this.name.value,
-      description: this.description.value,
-      image: this.imageUrl.value,
-      favorite: false
-    } as City
+      name: this.form.get('name')?.value,
+      description: this.form.get('description')?.value,
+      image: this.form.get('imageUrl')?.value,
+      favorite: false,
+    } as City;
 
-    this.store.updateState(value => [...value, item])
+    this.citiesService.createCity(item);
 
-    this.router.navigate([""])
+    this.router.navigate(['/list']);
   }
 
   ngOnInit(): void {
-    this.store.setTitlePage('Создание города')
+    this.store.setTitlePage('Создание города');
   }
 }
