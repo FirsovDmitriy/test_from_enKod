@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterOutlet, RouterLinkActive } from '@angular/router';
 import { StoreService } from '../store.service';
-import { CitiesQuery } from '../state/cities.query';
 import { CitiesService } from '../state/cities.service';
 
 @Component({
@@ -18,7 +17,6 @@ import { CitiesService } from '../state/cities.service';
 export class HomePageComponent implements OnInit {
   constructor(
     private store: StoreService,
-    private query: CitiesQuery,
     private citiesService: CitiesService
   ) {}
 

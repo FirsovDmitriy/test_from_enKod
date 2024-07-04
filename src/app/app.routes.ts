@@ -9,12 +9,12 @@ export const routes: Routes = [
       {
         path: 'list',
         loadComponent: () =>
-          import('./list/list.component').then((m) => m.ListComponent),
+          import('./home-page/list/list.component').then((m) => m.ListComponent),
       },
       {
         path: 'tile',
         loadComponent: () =>
-          import('./grid/grid.component').then((mod) => mod.GridComponent),
+          import('./home-page/grid/grid.component').then((mod) => mod.GridComponent),
       },
     ],
   },

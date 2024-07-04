@@ -32,6 +32,8 @@
   margin-bottom: 14px;
 }
 
-.card__delete {
+.card__actions {
   margin-left: auto;
+  display: flex;
+  gap: 8px;
 }

@@ -1,12 +1,12 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { SvgIconSpriteComponent } from '../svg-icon-sprite/svg-icon-sprite.component';
+import { SvgIconSpriteComponent } from '../../svg-icon-sprite/svg-icon-sprite.component';
 import { FavoriteButtonComponent } from '../favorite-button/favorite-button.component';
-import { StoreService } from '../store.service';
-import { CitiesQuery } from '../state/cities.query';
-import { City } from '../state/cities.store';
-import { CitiesService } from '../state/cities.service';
+import { StoreService } from '../../store.service';
+import { CitiesQuery } from '../../state/cities.query';
+import { City } from '../../state/cities.store';
+import { CitiesService } from '../../state/cities.service';
 
 @Component({
   selector: 'app-list',

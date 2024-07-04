@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { SvgIconSpriteComponent } from '../svg-icon-sprite/svg-icon-sprite.component';
-import { CitiesService } from '../state/cities.service';
-import { City } from '../state/cities.store';
+import { SvgIconSpriteComponent } from '../../svg-icon-sprite/svg-icon-sprite.component';
+import { CitiesService } from '../../state/cities.service';
+import { City } from '../../state/cities.store';
 
 @Component({
   selector: 'app-favorite-button',
