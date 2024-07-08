@@ -1,5 +1,5 @@
-<button class="icon-button" (click)="favorite()">
-  @if (item.favorite) {
+<button class="icon-button">
+  @if (isFavorite) {
     <app-svg-icon-sprite icon="star-fill" />
   } @else {
     <app-svg-icon-sprite icon="star" />

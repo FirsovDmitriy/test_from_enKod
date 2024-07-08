@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SvgIconSpriteComponent } from '../svg-icon-sprite/svg-icon-sprite.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -13,6 +13,7 @@ import { FormComponent } from '../form/form.component';
   imports: [ReactiveFormsModule, SvgIconSpriteComponent, FormComponent],
   templateUrl: './create-page.component.html',
   styleUrl: './create-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreatePageComponent implements OnInit {
   form = this.fb.group({
@@ -32,9 +33,7 @@ export class CreatePageComponent implements OnInit {
     this.router.navigate(['/list']);
   }
 
-  onSubmit(event: Event) {
-    event.preventDefault();
-
+  onSubmit() {
     const item = {
       id: Date.now(),
       name: this.form.get('name')?.value,

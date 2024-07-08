@@ -1,5 +1,5 @@
 <div class="grid">
-  @for (city of cities; track city.id) {
+  @for (city of cities | async; track city.id) {
     <article class="card">
       <img class="card__img" src="{{ city.image }}" alt="">
       <div class="card__content-wrapper">
@@ -7,19 +7,18 @@
           <h2 class="card__title">
             {{ city.name }}
           </h2>
-          <app-favorite-button [item]="city" />
-
-
+          <app-favorite-button
+            [isFavorite]="city.favorite"
+            (click)="addFavorite(city.id, city.favorite)"
+          />
           <div class="card__actions">
             <a class="icon-button" [routerLink]="['/edit', city.id]">
               <app-svg-icon-sprite icon="edit" />
             </a>
-  
             <button class="icon-button" (click)="delete(city.id)" type="button">
               <app-svg-icon-sprite icon="trash" />
             </button>
           </div>
-
         </span>
         <p class="card__text">
           {{ city.description }}

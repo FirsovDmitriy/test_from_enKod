@@ -1,7 +1,7 @@
 <form
   class="form"
   action="#"
-  (submit)="handleSubmit($event)"
+  (submit)="onSubmit.emit()"
   [formGroup]="form"
 >
   <div class="form__main">
@@ -39,6 +39,6 @@
     </label>
   </div>
   <button class="button button_cyan" type="submit" [disabled]="isDisabled()">
-    Создать
+    {{ isActiveRoute() ? 'Создать' : 'Редактировать' }}
   </button>
 </form>

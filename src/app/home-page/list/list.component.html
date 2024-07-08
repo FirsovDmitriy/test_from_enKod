@@ -1,5 +1,5 @@
 <div class="list">
-  @for (city of items; track city.id) {
+  @for (city of items | async; track city.id) {
   <article class="list__item card">
     <div class="card__img-wrapper">
       <img
@@ -16,7 +16,8 @@
           {{ city.name }}
         </h2>
         <app-favorite-button
-          [item]="city"
+          [isFavorite]="city.favorite"
+          (click)="addFavorite(city.id, city.favorite)"
         />
       </span>
       <p>{{ city.description }}</p>
